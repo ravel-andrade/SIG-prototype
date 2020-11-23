@@ -47,7 +47,7 @@ public class MainViewController implements Initializable {
 
 	@FXML
 	public void onMenuItemFuncionarioListarAction() {
-		System.out.println("onMenuItemFuncionarioListarAction");
+		loadView("/gui/FuncionariosList.fxml");
 
 	}
 
