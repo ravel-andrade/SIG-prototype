@@ -37,6 +37,11 @@
                         <MenuItem fx:id="menuItemCustosVariavelIndireto" mnemonicParsing="false" onAction="#onMenuItemCustosVariavelIndiretoAction" text="Variáveis indiretos" />
                     </items>
                   </Menu>
+                  <Menu mnemonicParsing="false" text="Info">
+                    <items>
+                      <MenuItem fx:id="menuItemSobre" mnemonicParsing="false" onAction="#onMenuItemSobreAction" text="Sobre" />
+                    </items>
+                  </Menu>
 					</menus>
 				</MenuBar>
 			</children>
