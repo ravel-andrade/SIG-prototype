@@ -6,7 +6,7 @@
 <?import javafx.scene.control.ScrollPane?>
 <?import javafx.scene.layout.VBox?>
 
-<ScrollPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1">
+<ScrollPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="gui.MainViewController">
 	<content>
 		<VBox prefHeight="326.0" prefWidth="513.0">
 			<children>
@@ -14,27 +14,27 @@
 					<menus>
 						<Menu mnemonicParsing="false" text="Funcionário">
 							<items>
-								<MenuItem mnemonicParsing="false" text="Listagem" />
-								<MenuItem mnemonicParsing="false" text="Cadastrar" />
+								<MenuItem fx:id="menuItemFuncionarioListar" mnemonicParsing="false" onAction="#onMenuItemFuncionarioListarAction" text="Listagem" />
+								<MenuItem fx:id="menuItemFuncionarioCadastrar" mnemonicParsing="false" onAction="#onMenuItemFuncionarioCadastrarAction" text="Cadastrar" />
 							</items>
 						</Menu>
 						<Menu mnemonicParsing="false" text="Produtos">
 							<items>
-								<MenuItem mnemonicParsing="false" text="Listagem" />
-                        <MenuItem mnemonicParsing="false" text="Cadastrar" />
+								<MenuItem fx:id="menuItemProdutosListar" mnemonicParsing="false" onAction="#onMenuItemProdutosListarAction" text="Listagem" />
+                        <MenuItem fx:id="menuItemProdutosCadastrar" mnemonicParsing="false" onAction="#onMenuItemProdutosCadastrarAction" text="Cadastrar" />
 							</items>
 						</Menu>
                   <Menu mnemonicParsing="false" text="Infraestrutura">
                     <items>
-                      <MenuItem mnemonicParsing="false" text="Listagem" />
-                        <MenuItem mnemonicParsing="false" text="Cadastrar" />
+                      <MenuItem fx:id="menuItemInfraestruturaListar" mnemonicParsing="false" onAction="#onMenuItemInfraestruturaListarAction" text="Listagem" />
+                        <MenuItem fx:id="menuItemInfraestruturaCadastrar" mnemonicParsing="false" onAction="#onMenuItemInfraestruturaCadastrarAction" text="Cadastrar" />
                     </items>
                   </Menu>
                   <Menu mnemonicParsing="false" text="Custos">
                     <items>
-                      <MenuItem mnemonicParsing="false" text="Fixos" />
-                        <MenuItem mnemonicParsing="false" text="Variáveis diretos" />
-                        <MenuItem mnemonicParsing="false" text="Variáveis indiretos" />
+                      <MenuItem fx:id="menuItemCustosFixo" mnemonicParsing="false" onAction="#onMenuItemCustosFixoAction" text="Fixos" />
+                        <MenuItem fx:id="menuItemCustosVariavelDireto" mnemonicParsing="false" onAction="#onMenuItemCustosVariavelDiretoAction" text="Variáveis diretos" />
+                        <MenuItem fx:id="menuItemCustosVariavelIndireto" mnemonicParsing="false" onAction="#onMenuItemCustosVariavelIndiretoAction" text="Variáveis indiretos" />
                     </items>
                   </Menu>
 					</menus>
