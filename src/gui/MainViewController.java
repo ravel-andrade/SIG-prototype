@@ -3,6 +3,7 @@ package gui;
 import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
+import java.util.function.Consumer;
 
 import application.Main;
 import gui.util.Alerts;
@@ -15,6 +16,7 @@ import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.MenuItem;
 import javafx.scene.control.ScrollPane;
 import javafx.scene.layout.VBox;
+import model.services.FuncionariosService;
 
 public class MainViewController implements Initializable {
 
@@ -47,8 +49,10 @@ public class MainViewController implements Initializable {
 
 	@FXML
 	public void onMenuItemFuncionarioListarAction() {
-		loadView("/gui/Funcionarios.fxml");
-
+		loadView("/gui/Funcionarios.fxml", (FuncionariosController controller) -> {
+			controller.setFuncionariosService(new FuncionariosService());
+			controller.updateTableView();
+		});
 	}
 
 	public void onMenuItemProdutosCadastrarAction() {
@@ -58,7 +62,7 @@ public class MainViewController implements Initializable {
 
 	@FXML
 	public void onMenuItemProdutosListarAction() {
-		System.out.println("onMenuItemProdutosListarAction");
+		loadView("/gui/Produtos.fxml",x -> {});
 
 	}
 
@@ -70,31 +74,31 @@ public class MainViewController implements Initializable {
 
 	@FXML
 	public void onMenuItemInfraestruturaListarAction() {
-		System.out.println("onMenuItemInfraestruturaListarAction");
+		loadView("/gui/Infraestrutura.fxml",x -> {});
 
 	}
 
 	@FXML
 	public void onMenuItemCustosFixoAction() {
-		System.out.println("onMenuItemCustosFixoAction");
+		loadView("/gui/CustoFixo.fxml",x -> {});
 
 	}
 
 	@FXML
 	public void onMenuItemCustosVariavelDiretoAction() {
-		System.out.println("onMenuItemCustosVariavelDiretoAction");
+		loadView("/gui/CustoVariavelDireto.fxml",x -> {});
 
 	}
 	
 	@FXML
 	public void onMenuItemCustosVariavelIndiretoAction() {
-		System.out.println("onMenuItemCustosVariavelIndiretoAction");
+		loadView("/gui/CustoVariavelIndireto.fxml",x -> {});
 
 	}
 	
 	@FXML
 	public void onMenuItemSobreAction() {
-		loadView("/gui/Sobre.fxml");
+		loadView("/gui/Sobre.fxml", x -> {});
 
 	}
 
@@ -102,22 +106,27 @@ public class MainViewController implements Initializable {
 
 	}
 	
-	private synchronized void loadView(String absoluteName) {
+	private synchronized <T> void loadView(String absoluteName, Consumer<T> initializingAction) {
 		try {
-		FXMLLoader loader = new FXMLLoader(getClass().getResource(absoluteName));
-		VBox newVBox = loader.load();
-		Scene mainScene = Main.getMainScene();
-		VBox mainVBox =(VBox)((ScrollPane) mainScene.getRoot()).getContent();
-		
-		Node mainMenu = mainVBox.getChildren().get(0);
-		mainVBox.getChildren().clear();
-		mainVBox.getChildren().add(mainMenu);
-		mainVBox.getChildren().addAll(newVBox.getChildren());
+			FXMLLoader loader = new FXMLLoader(getClass().getResource(absoluteName));
+			VBox newVBox = loader.load();
+
+			Scene mainScene = Main.getMainScene();
+			VBox mainVBox = (VBox)((ScrollPane) mainScene.getRoot()).getContent();
+
+			Node mainMenu = mainVBox.getChildren().get(0);
+			mainVBox.getChildren().clear();
+			mainVBox.getChildren().add(mainMenu);
+			mainVBox.getChildren().addAll(newVBox.getChildren());
+
+			T controller = loader.getController();
+			initializingAction.accept(controller);
+			
+			
+		}catch (IOException e) {
+			Alerts.showAlert("IO Exception", "Error loading view", e.getMessage(), AlertType.ERROR);
 		}
-		catch(IOException e) {
-			Alerts.showAlert("Erro de IO", "Erro ao carregar a tela", e.getMessage(), AlertType.ERROR);
-		}
-		
+
 	}
 
 }

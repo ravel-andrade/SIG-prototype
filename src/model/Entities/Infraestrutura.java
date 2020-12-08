@@ -2,7 +2,7 @@ package model.Entities;
 
 import java.io.Serializable;
 
-public class Funcionarios implements Serializable{
+public class Infraestrutura implements Serializable{
 	
 	private static final long serialVersionUID = 1L;
 	
@@ -12,11 +12,9 @@ public class Funcionarios implements Serializable{
 	private Double salario;
 	private int cargaHoraria;
 	
-	public Funcionarios() {
-		
-	}
 	
-	public Funcionarios(int id, String nome, String funcao, Double salario, int cargaHoraria) {
+	
+	public Infraestrutura(int id, String nome, String funcao, Double salario, int cargaHoraria) {
 		super();
 		this.id = id;
 		this.nome = nome;
@@ -69,7 +67,7 @@ public class Funcionarios implements Serializable{
 			return false;
 		if (getClass() != obj.getClass())
 			return false;
-		Funcionarios other = (Funcionarios) obj;
+		Infraestrutura other = (Infraestrutura) obj;
 		if (id != other.id)
 			return false;
 		return true;
