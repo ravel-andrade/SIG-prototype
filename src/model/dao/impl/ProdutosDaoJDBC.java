@@ -11,33 +11,33 @@ import java.util.List;
 import db.DB;
 import db.DbException;
 import db.DbIntegrityException;
-import model.Entities.Funcionarios;
-import model.dao.FuncionariosDao;
+import model.Entities.Produtos;
+import model.dao.ProdutosDao;
 
-public class FuncionariosDaoJDBC implements FuncionariosDao {
+public class ProdutosDaoJDBC implements ProdutosDao {
 
 	private Connection conn;
 	
-	public FuncionariosDaoJDBC(Connection conn) {
+	public ProdutosDaoJDBC(Connection conn) {
 		this.conn = conn;
 	}
 	
 	@Override
-	public Funcionarios findById(Integer id) {
+	public Produtos findById(Integer id) {
 		PreparedStatement st = null;
 		ResultSet rs = null;
 		try {
 			st = conn.prepareStatement(
-				"SELECT * FROM funcionarios WHERE Id = ?");
+				"SELECT * FROM produtos WHERE Id = ?");
 			st.setInt(1, id);
 			rs = st.executeQuery();
 			if (rs.next()) {
-				Funcionarios obj = new Funcionarios();
+				Produtos obj = new Produtos();
 				obj.setId(rs.getInt("Id"));
 				obj.setNome(rs.getString("Nome"));
-				obj.setFuncao(rs.getString("Funcao"));
-				obj.setSalario(rs.getDouble("Salario"));
-				obj.setCargaHoraria(rs.getInt("CargaHoraria"));
+				obj.setVarDireto(rs.getDouble("CustoVarDireto"));
+				obj.setVarIndireto(rs.getDouble("CustoVarDireto"));
+				
 				return obj;
 			}
 			return null;
@@ -52,23 +52,22 @@ public class FuncionariosDaoJDBC implements FuncionariosDao {
 	}
 
 	@Override
-	public List<Funcionarios> findAll() {
+	public List<Produtos> findAll() {
 		PreparedStatement st = null;
 		ResultSet rs = null;
 		try {
 			st = conn.prepareStatement(
-				"SELECT * FROM funcionarios ORDER BY Nome");
+				"SELECT * FROM produtos ORDER BY Nome");
 			rs = st.executeQuery();
 
-			List<Funcionarios> list = new ArrayList<>();
+			List<Produtos> list = new ArrayList<>();
 
 			while (rs.next()) {
-				Funcionarios obj = new Funcionarios();
+				Produtos obj = new Produtos();
 				obj.setId(rs.getInt("Id"));
 				obj.setNome(rs.getString("Nome"));
-				obj.setFuncao(rs.getString("Funcao"));
-				obj.setSalario(rs.getDouble("Salario"));
-				obj.setCargaHoraria(rs.getInt("CargaHoraria"));
+				obj.setVarDireto(rs.getDouble("CustoVarDireto"));
+				obj.setVarIndireto(rs.getDouble("CustoVarDireto"));
 				list.add(obj);
 			}
 			return list;
@@ -83,20 +82,20 @@ public class FuncionariosDaoJDBC implements FuncionariosDao {
 	}
 
 	@Override
-	public void insert(Funcionarios obj) {
+	public void insert(Produtos obj) {
 		PreparedStatement st = null;
 		try {
 			st = conn.prepareStatement(
-				"INSERT INTO funcionarios " +
-				"(Nome, Funcao, Salario, CargaHoraria) " +
+				"INSERT INTO produtos " +
+				"(Nome, CustoVarDireto, CustoVarIndireto) " +
 				"VALUES " +
-				"(?, ?, ?, ?)", 
+				"(?, ?, ?)", 
 				Statement.RETURN_GENERATED_KEYS);
 
 			st.setString(1, obj.getNome());
-			st.setString(2, obj.getFuncao());
-			st.setDouble(3, obj.getSalario());
-			st.setInt(4, obj.getCargaHoraria());
+			st.setDouble(2, obj.getCustoVarDireto());
+			st.setDouble(3, obj.getCustoVarIndireto());
+			
 
 			int rowsAffected = st.executeUpdate();
 			
@@ -120,19 +119,21 @@ public class FuncionariosDaoJDBC implements FuncionariosDao {
 	}
 
 	@Override
-	public void update(Funcionarios obj) {
+	public void update(Produtos obj) {
 		PreparedStatement st = null;
 		try {
 			st = conn.prepareStatement(
-					"UPDATE funcionarios " +
-							"SET Nome = ?, Funcao = ?, Salario = ?, CargaHoraria = ? " +
+					"UPDATE produtos " +
+							"SET Nome = ?, CustoVarDireto = ?, CustoVarIndireto = ?" +
 							"WHERE Id = ?");
 
 			st.setString(1, obj.getNome());
-			st.setString(2, obj.getFuncao());
-			st.setDouble(3, obj.getSalario());
-			st.setInt(4, obj.getCargaHoraria());
-			st.setInt(5, obj.getId());
+	
+			st.setDouble(2, obj.getCustoVarDireto());
+			
+			st.setDouble(3, obj.getCustoVarIndireto());
+			
+			st.setInt(4, obj.getId());
 
 			st.executeUpdate();
 		}
@@ -149,7 +150,7 @@ public class FuncionariosDaoJDBC implements FuncionariosDao {
 		PreparedStatement st = null;
 		try {
 			st = conn.prepareStatement(
-				"DELETE FROM funcionarios WHERE Id = ?");
+				"DELETE FROM Produtos WHERE Id = ?");
 
 			st.setInt(1, id);
 

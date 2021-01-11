@@ -9,9 +9,9 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<VBox prefHeight="315.0" prefWidth="698.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="gui.FuncionariosController">
+<VBox prefHeight="315.0" prefWidth="698.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="gui.ProdutosListController">
    <children>
-      <Label text="Custo fixo">
+      <Label text="Registro de produtos">
          <font>
             <Font name="System Bold" size="14.0" />
          </font>
@@ -24,17 +24,14 @@
           <Button fx:id="btNew" mnemonicParsing="false" onAction="#onBtNewAction" text="Novo" />
         </items>
       </ToolBar>
-      <TableView fx:id="tableViewFuncionarios" prefHeight="200.0" prefWidth="200.0">
+      <TableView fx:id="tableViewProdutos" prefHeight="200.0" prefWidth="200.0">
         <columns>
           <TableColumn fx:id="tableColumnId" prefWidth="75.0" text="Id" />
           <TableColumn fx:id="tableColumnNome" prefWidth="75.0" text="Nome" />
-            <TableColumn fx:id="tableColumnFuncao" prefWidth="75.0" />
-            <TableColumn fx:id="tableColumnSalario" prefWidth="81.0" />
-            <TableColumn fx:id="tableColumnCargaHoraria" prefWidth="87.0" />
-            <TableColumn prefWidth="75.0" text="Dia 1" />
-            <TableColumn prefWidth="75.0" text="Dia 2" />
-            <TableColumn prefWidth="75.0" text="Dia 3" />
-            <TableColumn prefWidth="75.0" text="Dia 4" />
+            <TableColumn fx:id="tableColumnCustoVarDireto" prefWidth="107.0" text="Custo var direto" />
+            <TableColumn fx:id="tableColumnCustoVarIndireto" prefWidth="111.0" text="Custo var indireto" />
+            <TableColumn fx:id="tableColumnEDIT" minWidth="7.0" prefWidth="79.0" />
+            <TableColumn fx:id="tableColumnREMOVE" prefWidth="83.0" />
         </columns>
       </TableView>
    </children>

@@ -11,33 +11,33 @@ import java.util.List;
 import db.DB;
 import db.DbException;
 import db.DbIntegrityException;
-import model.Entities.Funcionarios;
-import model.dao.FuncionariosDao;
+import model.Entities.Infraestrutura;
+import model.dao.InfraestruturaDao;
 
-public class FuncionariosDaoJDBC implements FuncionariosDao {
+public class InfraestruturaDaoJDBC implements InfraestruturaDao {
 
 	private Connection conn;
 	
-	public FuncionariosDaoJDBC(Connection conn) {
+	public InfraestruturaDaoJDBC(Connection conn) {
 		this.conn = conn;
 	}
 	
 	@Override
-	public Funcionarios findById(Integer id) {
+	public Infraestrutura findById(Integer id) {
 		PreparedStatement st = null;
 		ResultSet rs = null;
 		try {
 			st = conn.prepareStatement(
-				"SELECT * FROM funcionarios WHERE Id = ?");
+				"SELECT * FROM infraestrutura WHERE Id = ?");
 			st.setInt(1, id);
 			rs = st.executeQuery();
 			if (rs.next()) {
-				Funcionarios obj = new Funcionarios();
+				Infraestrutura obj = new Infraestrutura();
 				obj.setId(rs.getInt("Id"));
-				obj.setNome(rs.getString("Nome"));
-				obj.setFuncao(rs.getString("Funcao"));
-				obj.setSalario(rs.getDouble("Salario"));
-				obj.setCargaHoraria(rs.getInt("CargaHoraria"));
+				obj.setDescricao(rs.getString("Descricao"));
+				obj.setQuantidade(rs.getInt("Quantidade"));
+				obj.setValorUN(rs.getDouble("ValorUN"));
+				
 				return obj;
 			}
 			return null;
@@ -52,23 +52,22 @@ public class FuncionariosDaoJDBC implements FuncionariosDao {
 	}
 
 	@Override
-	public List<Funcionarios> findAll() {
+	public List<Infraestrutura> findAll() {
 		PreparedStatement st = null;
 		ResultSet rs = null;
 		try {
 			st = conn.prepareStatement(
-				"SELECT * FROM funcionarios ORDER BY Nome");
+				"SELECT * FROM infraestrutura ORDER BY Descricao");
 			rs = st.executeQuery();
 
-			List<Funcionarios> list = new ArrayList<>();
+			List<Infraestrutura> list = new ArrayList<>();
 
 			while (rs.next()) {
-				Funcionarios obj = new Funcionarios();
+				Infraestrutura obj = new Infraestrutura();
 				obj.setId(rs.getInt("Id"));
-				obj.setNome(rs.getString("Nome"));
-				obj.setFuncao(rs.getString("Funcao"));
-				obj.setSalario(rs.getDouble("Salario"));
-				obj.setCargaHoraria(rs.getInt("CargaHoraria"));
+				obj.setDescricao(rs.getString("Descricao"));
+				obj.setQuantidade(rs.getInt("Quantidade"));
+				obj.setValorUN(rs.getDouble("ValorUN"));
 				list.add(obj);
 			}
 			return list;
@@ -83,20 +82,20 @@ public class FuncionariosDaoJDBC implements FuncionariosDao {
 	}
 
 	@Override
-	public void insert(Funcionarios obj) {
+	public void insert(Infraestrutura obj) {
 		PreparedStatement st = null;
 		try {
 			st = conn.prepareStatement(
-				"INSERT INTO funcionarios " +
-				"(Nome, Funcao, Salario, CargaHoraria) " +
+				"INSERT INTO infraestrutura " +
+				"(Descricao, Quantidade, ValorUN) " +
 				"VALUES " +
-				"(?, ?, ?, ?)", 
+				"(?, ?, ?)", 
 				Statement.RETURN_GENERATED_KEYS);
 
-			st.setString(1, obj.getNome());
-			st.setString(2, obj.getFuncao());
-			st.setDouble(3, obj.getSalario());
-			st.setInt(4, obj.getCargaHoraria());
+			st.setString(1, obj.getDescricao());
+			st.setInt(2, obj.getQuantidade());
+			st.setDouble(3, obj.getValorUN());
+			
 
 			int rowsAffected = st.executeUpdate();
 			
@@ -120,19 +119,18 @@ public class FuncionariosDaoJDBC implements FuncionariosDao {
 	}
 
 	@Override
-	public void update(Funcionarios obj) {
+	public void update(Infraestrutura obj) {
 		PreparedStatement st = null;
 		try {
 			st = conn.prepareStatement(
-					"UPDATE funcionarios " +
-							"SET Nome = ?, Funcao = ?, Salario = ?, CargaHoraria = ? " +
+					"UPDATE infraestrutura " +
+							"SET Descricao = ?, Quantidade = ?, ValorUN = ?" +
 							"WHERE Id = ?");
 
-			st.setString(1, obj.getNome());
-			st.setString(2, obj.getFuncao());
-			st.setDouble(3, obj.getSalario());
-			st.setInt(4, obj.getCargaHoraria());
-			st.setInt(5, obj.getId());
+			st.setString(1, obj.getDescricao());
+			st.setInt(2, obj.getQuantidade());
+			st.setDouble(3, obj.getValorUN());
+			st.setInt(4, obj.getId());
 
 			st.executeUpdate();
 		}
@@ -149,7 +147,7 @@ public class FuncionariosDaoJDBC implements FuncionariosDao {
 		PreparedStatement st = null;
 		try {
 			st = conn.prepareStatement(
-				"DELETE FROM funcionarios WHERE Id = ?");
+				"DELETE FROM Infraestrutura WHERE Id = ?");
 
 			st.setInt(1, id);
 

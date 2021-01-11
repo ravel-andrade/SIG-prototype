@@ -2,7 +2,7 @@ package model.Entities;
 
 import java.io.Serializable;
 
-public class CustoFixo implements Serializable{
+public class CustoVarDireto implements Serializable{
 	
 	private static final long serialVersionUID = 1L;
 	
@@ -11,21 +11,21 @@ public class CustoFixo implements Serializable{
 	private Double dia1;
 	private Double dia2;
 	private Double dia3;
-	private Double dia4;
 	
 	
-	public CustoFixo() {
+	
+	public CustoVarDireto() {
 		super();
 	}
 	
-	public CustoFixo(int id, String nome, Double dia1, Double dia2, Double dia3, Double dia4) {
+	public CustoVarDireto(Integer id, String nome, Double dia1, Double dia2, Double dia3) {
 		super();
 		this.id = id;
 		this.nome = nome;
 		this.dia1 = dia1;
 		this.dia2 = dia2;
 		this.dia3 = dia3;
-		this.dia4 = dia4;
+		
 	}
 	public Integer getId() {
 		return id;
@@ -57,12 +57,7 @@ public class CustoFixo implements Serializable{
 	public void setDia3(Double dia3) {
 		this.dia3 = dia3;
 	}
-	public Double getDia4() {
-		return dia4;
-	}
-	public void setDia4(Double dia4) {
-		this.dia4 = dia4;
-	}
+	
 	public static long getSerialversionuid() {
 		return serialVersionUID;
 	}
@@ -73,7 +68,6 @@ public class CustoFixo implements Serializable{
 		result = prime * result + ((dia1 == null) ? 0 : dia1.hashCode());
 		result = prime * result + ((dia2 == null) ? 0 : dia2.hashCode());
 		result = prime * result + ((dia3 == null) ? 0 : dia3.hashCode());
-		result = prime * result + ((dia4 == null) ? 0 : dia4.hashCode());
 		result = prime * result + id;
 		result = prime * result + ((nome == null) ? 0 : nome.hashCode());
 		return result;
@@ -86,7 +80,7 @@ public class CustoFixo implements Serializable{
 			return false;
 		if (getClass() != obj.getClass())
 			return false;
-		CustoFixo other = (CustoFixo) obj;
+		CustoVarDireto other = (CustoVarDireto) obj;
 		if (dia1 == null) {
 			if (other.dia1 != null)
 				return false;
@@ -102,11 +96,6 @@ public class CustoFixo implements Serializable{
 				return false;
 		} else if (!dia3.equals(other.dia3))
 			return false;
-		if (dia4 == null) {
-			if (other.dia4 != null)
-				return false;
-		} else if (!dia4.equals(other.dia4))
-			return false;
 		if (id != other.id)
 			return false;
 		if (nome == null) {
@@ -119,8 +108,8 @@ public class CustoFixo implements Serializable{
 
 	@Override
 	public String toString() {
-		return "CustoFixo [id=" + id + ", nome=" + nome + ", dia1=" + dia1 + ", dia2=" + dia2 + ", dia3=" + dia3
-				+ ", dia4=" + dia4 + "]";
+		return "CustoVarDireto [id=" + id + ", nome=" + nome + ", dia1=" + dia1 + ", dia2=" + dia2 + ", dia3=" + dia3
+				+ ", dia4=" + "]";
 	}
 	
 	

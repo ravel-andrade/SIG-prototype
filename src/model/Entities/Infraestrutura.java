@@ -6,59 +6,70 @@ public class Infraestrutura implements Serializable{
 	
 	private static final long serialVersionUID = 1L;
 	
-	private int id;
-	private String nome;
-	private String funcao;
-	private Double salario;
-	private int cargaHoraria;
+	private Integer id;
+	private String descricao;
+	private Integer quantidade;
+	private Double valorUN;
 	
-	
-	
-	public Infraestrutura(int id, String nome, String funcao, Double salario, int cargaHoraria) {
+	public Infraestrutura() {
+		super();
+	}
+
+	public Infraestrutura(Integer id, String descricao, Integer quantidade, Double valorUN) {
 		super();
 		this.id = id;
-		this.nome = nome;
-		this.funcao = funcao;
-		this.salario = salario;
-		this.cargaHoraria = cargaHoraria;
+		this.descricao = descricao;
+		this.quantidade = quantidade;
+		this.valorUN = valorUN;
 	}
-	public int getId() {
+
+	public Integer getId() {
 		return id;
 	}
-	public void setId(int id) {
+
+	public void setId(Integer id) {
 		this.id = id;
 	}
-	public String getNome() {
-		return nome;
+
+	public String getDescricao() {
+		return descricao;
 	}
-	public void setNome(String nome) {
-		this.nome = nome;
+
+	public void setDescricao(String descricao) {
+		this.descricao = descricao;
 	}
-	public String getFuncao() {
-		return funcao;
+
+	public Integer getQuantidade() {
+		return quantidade;
 	}
-	public void setFuncao(String funcao) {
-		this.funcao = funcao;
+
+	public void setQuantidade(Integer quantidade) {
+		this.quantidade = quantidade;
 	}
-	public Double getSalario() {
-		return salario;
+
+	public Double getValorUN() {
+		return valorUN;
 	}
-	public void setSalario(Double salario) {
-		this.salario = salario;
+
+	public void setValorUN(Double valorUN) {
+		this.valorUN = valorUN;
 	}
-	public int getCargaHoraria() {
-		return cargaHoraria;
+
+	public static long getSerialversionuid() {
+		return serialVersionUID;
 	}
-	public void setCargaHoraria(int cargaHoraria) {
-		this.cargaHoraria = cargaHoraria;
-	}
+
 	@Override
 	public int hashCode() {
 		final int prime = 31;
 		int result = 1;
+		result = prime * result + ((descricao == null) ? 0 : descricao.hashCode());
 		result = prime * result + id;
+		result = prime * result + ((quantidade == null) ? 0 : quantidade.hashCode());
+		result = prime * result + ((valorUN == null) ? 0 : valorUN.hashCode());
 		return result;
 	}
+
 	@Override
 	public boolean equals(Object obj) {
 		if (this == obj)
@@ -68,15 +79,36 @@ public class Infraestrutura implements Serializable{
 		if (getClass() != obj.getClass())
 			return false;
 		Infraestrutura other = (Infraestrutura) obj;
+		if (descricao == null) {
+			if (other.descricao != null)
+				return false;
+		} else if (!descricao.equals(other.descricao))
+			return false;
 		if (id != other.id)
+			return false;
+		if (quantidade == null) {
+			if (other.quantidade != null)
+				return false;
+		} else if (!quantidade.equals(other.quantidade))
+			return false;
+		if (valorUN == null) {
+			if (other.valorUN != null)
+				return false;
+		} else if (!valorUN.equals(other.valorUN))
 			return false;
 		return true;
 	}
+
 	@Override
 	public String toString() {
-		return "Funcionarios [id=" + id + ", nome=" + nome + ", funcao=" + funcao + ", salario=" + salario
-				+ ", cargaHoraria=" + cargaHoraria + "]";
+		return "Infraestrutura [id=" + id + ", descricao=" + descricao + ", quantidade=" + quantidade + ", valorUN="
+				+ valorUN + "]";
 	}
+	
+	
+	
+	
+	
 
 	
 

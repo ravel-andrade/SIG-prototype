@@ -2,7 +2,7 @@ package model.Entities;
 
 import java.io.Serializable;
 
-public class CustoFixo implements Serializable{
+public class CustoVarIndireto implements Serializable{
 	
 	private static final long serialVersionUID = 1L;
 	
@@ -14,11 +14,11 @@ public class CustoFixo implements Serializable{
 	private Double dia4;
 	
 	
-	public CustoFixo() {
+	public CustoVarIndireto() {
 		super();
 	}
 	
-	public CustoFixo(int id, String nome, Double dia1, Double dia2, Double dia3, Double dia4) {
+	public CustoVarIndireto(Integer id, String nome, Double dia1, Double dia2, Double dia3, Double dia4) {
 		super();
 		this.id = id;
 		this.nome = nome;
@@ -86,7 +86,7 @@ public class CustoFixo implements Serializable{
 			return false;
 		if (getClass() != obj.getClass())
 			return false;
-		CustoFixo other = (CustoFixo) obj;
+		CustoVarIndireto other = (CustoVarIndireto) obj;
 		if (dia1 == null) {
 			if (other.dia1 != null)
 				return false;
@@ -119,7 +119,7 @@ public class CustoFixo implements Serializable{
 
 	@Override
 	public String toString() {
-		return "CustoFixo [id=" + id + ", nome=" + nome + ", dia1=" + dia1 + ", dia2=" + dia2 + ", dia3=" + dia3
+		return "CustoVarIndireto [id=" + id + ", nome=" + nome + ", dia1=" + dia1 + ", dia2=" + dia2 + ", dia3=" + dia3
 				+ ", dia4=" + dia4 + "]";
 	}
 	

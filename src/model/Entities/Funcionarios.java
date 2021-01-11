@@ -6,17 +6,17 @@ public class Funcionarios implements Serializable{
 	
 	private static final long serialVersionUID = 1L;
 	
-	private int id;
+	private Integer id;
 	private String nome;
 	private String funcao;
 	private Double salario;
-	private int cargaHoraria;
+	private Integer cargaHoraria;
 	
 	public Funcionarios() {
 		
 	}
 	
-	public Funcionarios(int id, String nome, String funcao, Double salario, int cargaHoraria) {
+	public Funcionarios(Integer id, String nome, String funcao, Double salario, int cargaHoraria) {
 		super();
 		this.id = id;
 		this.nome = nome;
@@ -24,10 +24,10 @@ public class Funcionarios implements Serializable{
 		this.salario = salario;
 		this.cargaHoraria = cargaHoraria;
 	}
-	public int getId() {
+	public Integer getId() {
 		return id;
 	}
-	public void setId(int id) {
+	public void setId(Integer id) {
 		this.id = id;
 	}
 	public String getNome() {
@@ -48,10 +48,10 @@ public class Funcionarios implements Serializable{
 	public void setSalario(Double salario) {
 		this.salario = salario;
 	}
-	public int getCargaHoraria() {
+	public Integer getCargaHoraria() {
 		return cargaHoraria;
 	}
-	public void setCargaHoraria(int cargaHoraria) {
+	public void setCargaHoraria(Integer cargaHoraria) {
 		this.cargaHoraria = cargaHoraria;
 	}
 	@Override

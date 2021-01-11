@@ -6,26 +6,30 @@ public class Produtos implements Serializable{
 	
 	private static final long serialVersionUID = 1L;
 	
-	private int id;
+	private Integer id;
 	private String nome;
-	private String funcao;
-	private Double salario;
-	private int cargaHoraria;
+	
+	private Double custoVarDireto;
+	private Double custoVarIndireto;
 	
 	
+	public Produtos() {
+		super();
 	
-	public Produtos(int id, String nome, String funcao, Double salario, int cargaHoraria) {
+	}
+	
+	public Produtos(Integer id, String nome, Double CustoVarDireto, Double CustoVarIndireto) {
 		super();
 		this.id = id;
 		this.nome = nome;
-		this.funcao = funcao;
-		this.salario = salario;
-		this.cargaHoraria = cargaHoraria;
+		this.custoVarDireto =CustoVarDireto;
+		this.custoVarIndireto =CustoVarIndireto;
+	
 	}
-	public int getId() {
+	public Integer getId() {
 		return id;
 	}
-	public void setId(int id) {
+	public void setId(Integer id) {
 		this.id = id;
 	}
 	public String getNome() {
@@ -34,24 +38,24 @@ public class Produtos implements Serializable{
 	public void setNome(String nome) {
 		this.nome = nome;
 	}
-	public String getFuncao() {
-		return funcao;
+	
+	public void setVarIndireto(double custoVarIndireto) {
+		this.custoVarIndireto = custoVarIndireto;
 	}
-	public void setFuncao(String funcao) {
-		this.funcao = funcao;
+	
+	public Double getCustoVarDireto() {
+		return custoVarDireto;
 	}
-	public Double getSalario() {
-		return salario;
+	
+	public void setVarDireto(double custoVarDireto) {
+		this.custoVarDireto = custoVarDireto;
 	}
-	public void setSalario(Double salario) {
-		this.salario = salario;
+	
+	public Double getCustoVarIndireto() {
+		return custoVarIndireto;
 	}
-	public int getCargaHoraria() {
-		return cargaHoraria;
-	}
-	public void setCargaHoraria(int cargaHoraria) {
-		this.cargaHoraria = cargaHoraria;
-	}
+	
+	
 	@Override
 	public int hashCode() {
 		final int prime = 31;
@@ -74,8 +78,7 @@ public class Produtos implements Serializable{
 	}
 	@Override
 	public String toString() {
-		return "Funcionarios [id=" + id + ", nome=" + nome + ", funcao=" + funcao + ", salario=" + salario
-				+ ", cargaHoraria=" + cargaHoraria + "]";
+		return "Funcionarios [id=" + id + ", nome=" + nome + ", custoVarDireto=" + custoVarDireto + ", custoVarIndireto=" + custoVarIndireto + "]";
 	}
 
 	

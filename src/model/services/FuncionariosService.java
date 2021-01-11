@@ -15,4 +15,17 @@ public class FuncionariosService {
 	public List<Funcionarios> findAll() {
 		return dao.findAll();
 	}
+	
+	public void saveOrUpdate(Funcionarios obj) {
+		if (obj.getId() == null ) {
+			dao.insert(obj);
+		}
+		else {
+			dao.update(obj);
+		}
+	}
+	
+	public void remove(Funcionarios obj) {
+		dao.deleteById(obj.getId());
+	}
 }

@@ -9,9 +9,9 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<VBox prefHeight="315.0" prefWidth="698.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="gui.FuncionariosController">
+<VBox prefHeight="315.0" prefWidth="698.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="gui.FuncionariosListController">
    <children>
-      <Label text="Custo variavel direto">
+      <Label text="Registro de funcionarios">
          <font>
             <Font name="System Bold" size="14.0" />
          </font>
@@ -26,16 +26,13 @@
       </ToolBar>
       <TableView fx:id="tableViewFuncionarios" prefHeight="200.0" prefWidth="200.0">
         <columns>
-          <TableColumn fx:id="tableColumnId" prefWidth="56.0" text="Id" />
-          <TableColumn fx:id="tableColumnNome" prefWidth="83.0" text="Nome" />
-            <TableColumn fx:id="tableColumnFuncao" prefWidth="67.0" />
-            <TableColumn fx:id="tableColumnSalario" prefWidth="66.0" />
-            <TableColumn fx:id="tableColumnCargaHoraria" prefWidth="60.0" />
-            <TableColumn prefWidth="66.0" text="Dia 1" />
-            <TableColumn prefWidth="67.0" text="Dia 2" />
-            <TableColumn prefWidth="77.0" text="Dia 3" />
-            <TableColumn prefWidth="84.0" text="Dia 4" />
-            <TableColumn prefWidth="75.0" text="Dia 5" />
+          <TableColumn fx:id="tableColumnId" prefWidth="75.0" text="Id" />
+          <TableColumn fx:id="tableColumnNome" prefWidth="75.0" text="Nome" />
+            <TableColumn fx:id="tableColumnFuncao" prefWidth="75.0" text="Função" />
+            <TableColumn fx:id="tableColumnSalario" prefWidth="75.0" text="Salário" />
+            <TableColumn fx:id="tableColumnCargaHoraria" prefWidth="112.0" text="Carga horária" />
+            <TableColumn fx:id="tableColumnEDIT" prefWidth="98.0" />
+            <TableColumn fx:id="tableColumnREMOVE" prefWidth="85.0" />
         </columns>
       </TableView>
    </children>

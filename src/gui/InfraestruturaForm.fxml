@@ -10,7 +10,7 @@
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.RowConstraints?>
 
-<AnchorPane prefHeight="321.0" prefWidth="498.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="gui.FuncionariosFormController">
+<AnchorPane prefHeight="321.0" prefWidth="498.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="gui.InfraestruturaFormController">
    <children>
       <GridPane layoutX="32.0" layoutY="27.0" prefHeight="236.0" prefWidth="485.0" AnchorPane.leftAnchor="20.0" AnchorPane.topAnchor="20.0">
         <columnConstraints>
@@ -28,16 +28,14 @@
         </rowConstraints>
          <children>
             <Label text="Id" />
-            <Label text="Nome" GridPane.rowIndex="1" />
+            <Label text="Descrição" GridPane.rowIndex="1" />
             <TextField fx:id="txtId" editable="false" GridPane.columnIndex="1" />
-            <TextField fx:id="txtNome" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+            <TextField fx:id="txtDescricao" GridPane.columnIndex="1" GridPane.rowIndex="1" />
             <Label fx:id="labelErrorNome" textFill="RED" GridPane.columnIndex="2" GridPane.rowIndex="1" />
-            <Label text="Função" GridPane.rowIndex="2" />
-            <Label text="Salário" GridPane.rowIndex="3" />
-            <Label text="Carga horária" GridPane.rowIndex="4" />
-            <TextField fx:id="txtFuncao" GridPane.columnIndex="1" GridPane.rowIndex="2" />
-            <TextField fx:id="txtSalario" GridPane.columnIndex="1" GridPane.rowIndex="3" />
-            <TextField fx:id="txtCargaHoraria" GridPane.columnIndex="1" GridPane.rowIndex="4" />
+            <Label text="Quantidade" GridPane.rowIndex="2" />
+            <Label text="Valor unidade" GridPane.rowIndex="3" />
+            <TextField fx:id="txtQuantidade" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+            <TextField fx:id="txtValorUN" GridPane.columnIndex="1" GridPane.rowIndex="3" />
             <HBox prefHeight="78.0" prefWidth="222.0" spacing="5.0" GridPane.columnIndex="1" GridPane.rowIndex="5">
                <children>
                   <Button fx:id="btSave" mnemonicParsing="false" onAction="#onBtSaveAction" text="Salvar">
@@ -52,8 +50,8 @@
                   </Button>
                </children>
             </HBox>
-            <Label fx:id="labelErrorFuncao" GridPane.columnIndex="2" GridPane.rowIndex="2" />
-            <Label fx:id="labelErrorSalario" GridPane.columnIndex="2" GridPane.rowIndex="3" />
+            <Label prefHeight="17.0" prefWidth="0.0" GridPane.columnIndex="2" GridPane.rowIndex="1" />
+            <Label fx:id="labelErrorCustoVarIndreto" GridPane.columnIndex="2" GridPane.rowIndex="3" />
             <Label fx:id="labelErrorCargaHoraria" GridPane.columnIndex="2" GridPane.rowIndex="4" />
          </children>
       </GridPane>

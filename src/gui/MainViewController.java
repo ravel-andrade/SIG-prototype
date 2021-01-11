@@ -17,6 +17,8 @@ import javafx.scene.control.MenuItem;
 import javafx.scene.control.ScrollPane;
 import javafx.scene.layout.VBox;
 import model.services.FuncionariosService;
+import model.services.InfraestruturaService;
+import model.services.ProdutosService;
 
 public class MainViewController implements Initializable {
 
@@ -49,7 +51,7 @@ public class MainViewController implements Initializable {
 
 	@FXML
 	public void onMenuItemFuncionarioListarAction() {
-		loadView("/gui/Funcionarios.fxml", (FuncionariosController controller) -> {
+		loadView("/gui/FuncionariosList.fxml", (FuncionariosListController controller) -> {
 			controller.setFuncionariosService(new FuncionariosService());
 			controller.updateTableView();
 		});
@@ -62,7 +64,10 @@ public class MainViewController implements Initializable {
 
 	@FXML
 	public void onMenuItemProdutosListarAction() {
-		loadView("/gui/Produtos.fxml",x -> {});
+		loadView("/gui/ProdutosList.fxml", (ProdutosListController controller) -> {
+			controller.setProdutosService(new ProdutosService());
+			controller.updateTableView();
+		});
 
 	}
 
@@ -74,7 +79,11 @@ public class MainViewController implements Initializable {
 
 	@FXML
 	public void onMenuItemInfraestruturaListarAction() {
-		loadView("/gui/Infraestrutura.fxml",x -> {});
+		loadView("/gui/InfraestruturaList.fxml", (InfraestruturaListController controller) -> {
+			controller.setInfraestruturaService(new InfraestruturaService());
+			controller.updateTableView();
+		});
+
 
 	}
 
