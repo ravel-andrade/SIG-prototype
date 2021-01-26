@@ -1,0 +1,33 @@
+create database energeticoTw;
+
+use energeticoTw;
+
+CREATE TABLE Product (
+  Id int(11) NOT NULL AUTO_INCREMENT,
+  Name varchar(60) DEFAULT NULL,
+  Value double NOT NULL,
+  PRIMARY KEY (Id)
+);
+
+CREATE TABLE Discount (
+  Id int(11) NOT NULL AUTO_INCREMENT,
+  Amount int(8) DEFAULT NULL,
+  Value double NOT NULL,
+  PRIMARY KEY (Id)
+);
+
+drop table Product;
+
+CREATE TABLE Sale (
+  Id int(11) NOT NULL AUTO_INCREMENT,
+  Name varchar(60) DEFAULT NULL,
+  TaxIPI double NOT NULL,
+  TaxICMS double NOT NULL,
+  TaxPIS double NOT NULL,
+  TaxCOFINS double NOT NULL,
+  Amount int NOT NULL,
+  Total double NOT NULL,
+  Discount double NOT NULL,
+ 
+  PRIMARY KEY (Id)
+);
