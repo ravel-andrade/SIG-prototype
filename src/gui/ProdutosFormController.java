@@ -22,7 +22,6 @@ import model.Entities.Produtos;
 import model.services.ProdutosService;
 import model.exceptions.ValidationException;
 
-
 public class ProdutosFormController implements Initializable {
 
 	private Produtos entity;
@@ -35,20 +34,18 @@ public class ProdutosFormController implements Initializable {
 	@FXML
 	private TextField txtNome;
 
-
-
 	@FXML
 	private TextField txtCustoVarDireto;
-	
+
 	@FXML
 	private TextField txtCustoVarIndireto;
 
 	@FXML
 	private Label labelErrorNome;
-	
+
 	@FXML
 	private Label labelErrorCustoVarIndreto;
-	
+
 	@FXML
 	private Label labelErrorCustoVarDireto;
 
@@ -88,11 +85,10 @@ public class ProdutosFormController implements Initializable {
 			service.saveOrUpdate(entity);
 			notifyDataChangeListeners();
 			Utils.currentStage(event).close();
-		}
-		catch (ValidationException e) {
+		} catch (ValidationException e) {
 			setErrorMessages(e.getErrors());
 		}
-		
+
 		catch (DbException e) {
 			Alerts.showAlert("Error saving object", null, e.getMessage(), AlertType.ERROR);
 		}
@@ -107,31 +103,46 @@ public class ProdutosFormController implements Initializable {
 	private Produtos getFormData() {
 		Produtos obj = new Produtos();
 		ValidationException exception = new ValidationException("Validation error");
-		
-			obj.setId(Utils.tryParseToInt(txtId.getText()));
-	
+
+		obj.setId(Utils.tryParseToInt(txtId.getText()));
+
 		if (txtNome.getText() == null || txtNome.getText().trim().equals("")) {
 			exception.addError("nome", "Field can't be empty");
+		} else {
+			exception.clearError("nome");
+			obj.setNome(txtNome.getText());
 		}
-
-		obj.setNome(txtNome.getText());
 
 		if (txtCustoVarDireto.getText() == null || txtCustoVarDireto.getText().trim().equals("")) {
 			exception.addError("custovardireto", "Field can't be empty");
+		} else {
+			exception.clearError("custovardireto");
+			try {
+				obj.setVarDireto(Utils.tryParseToDouble(txtCustoVarDireto.getText()));
+			} catch (Exception e) {
+				exception.addError("custovardireto", "Campo numerico");
+			}
+
 		}
 
-		obj.setVarDireto(Utils.tryParseToDouble(txtCustoVarDireto.getText()));
-		
 		if (txtCustoVarIndireto.getText() == null || txtCustoVarIndireto.getText().trim().equals("")) {
-			exception.addError("custovardireto", "Field can't be empty");
-		}
 
-		obj.setVarIndireto(Utils.tryParseToDouble(txtCustoVarIndireto.getText()));
+			exception.addError("custovarindireto", "Field can't be empty");
+		} else {
+			exception.clearError("custovarindireto");
+			try {
+				obj.setVarIndireto(Utils.tryParseToDouble(txtCustoVarIndireto.getText()));
+			} catch (Exception e) {
+				exception.addError("custovarindireto", "Campo numerico");
+			}
+
+		}
 
 		if (exception.getErrors().size() > 0) {
+
 			throw exception;
 		}
-		
+
 		return obj;
 	}
 
@@ -150,7 +161,7 @@ public class ProdutosFormController implements Initializable {
 		Constraints.setTextFieldMaxLength(txtNome, 30);
 		Constraints.setTextFieldMaxLength(txtCustoVarIndireto, 8);
 		Constraints.setTextFieldMaxLength(txtCustoVarDireto, 8);
-		
+
 	}
 
 	public void updateFormData() {
@@ -159,26 +170,31 @@ public class ProdutosFormController implements Initializable {
 		}
 		txtId.setText(String.valueOf(entity.getId()));
 		txtNome.setText(entity.getNome());
-		
-		txtCustoVarIndireto.setText(String.valueOf(entity.getCustoVarIndireto()));
-		txtCustoVarDireto.setText(String.valueOf(entity.getCustoVarDireto()));
+
+		if (entity.getCustoVarDireto() != null) {
+			txtCustoVarIndireto.setText(String.valueOf(entity.getCustoVarIndireto()));
+		}
+
+		if (entity.getCustoVarDireto() != null) {
+			txtCustoVarDireto.setText(String.valueOf(entity.getCustoVarDireto()));
+		}
+
 	}
-	
+
 	private void setErrorMessages(Map<String, String> errors) {
 		Set<String> fields = errors.keySet();
 
 		if (fields.contains("nome")) {
 			labelErrorNome.setText(errors.get("nome"));
 		}
-		
+
 		if (fields.contains("custovardireto")) {
 			labelErrorCustoVarDireto.setText(errors.get("custovardireto"));
 		}
-		
-		if (fields.contains("custovardireto")) {
-			labelErrorCustoVarDireto.setText(errors.get("custovardireto"));
+
+		if (fields.contains("custovarindireto")) {
+			labelErrorCustoVarIndreto.setText(errors.get("custovarindireto"));
 		}
-		
-	
+
 	}
 }

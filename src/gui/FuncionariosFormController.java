@@ -22,7 +22,6 @@ import model.Entities.Funcionarios;
 import model.services.FuncionariosService;
 import model.exceptions.ValidationException;
 
-
 public class FuncionariosFormController implements Initializable {
 
 	private Funcionarios entity;
@@ -46,13 +45,13 @@ public class FuncionariosFormController implements Initializable {
 
 	@FXML
 	private Label labelErrorNome;
-	
+
 	@FXML
 	private Label labelErrorFuncao;
-	
+
 	@FXML
 	private Label labelErrorCargaHoraria;
-	
+
 	@FXML
 	private Label labelErrorSalario;
 
@@ -92,11 +91,10 @@ public class FuncionariosFormController implements Initializable {
 			service.saveOrUpdate(entity);
 			notifyDataChangeListeners();
 			Utils.currentStage(event).close();
-		}
-		catch (ValidationException e) {
+		} catch (ValidationException e) {
 			setErrorMessages(e.getErrors());
 		}
-		
+
 		catch (DbException e) {
 			Alerts.showAlert("Error saving object", null, e.getMessage(), AlertType.ERROR);
 		}
@@ -111,38 +109,54 @@ public class FuncionariosFormController implements Initializable {
 	private Funcionarios getFormData() {
 		Funcionarios obj = new Funcionarios();
 		ValidationException exception = new ValidationException("Validation error");
-		
+
 		obj.setId(Utils.tryParseToInt(txtId.getText()));
-				
-		
+
 		if (txtNome.getText() == null || txtNome.getText().trim().equals("")) {
 			exception.addError("nome", "Field can't be empty");
+		} else {
+			exception.addError("nome", "");
 		}
 
 		obj.setNome(txtNome.getText());
 
 		if (txtFuncao.getText() == null || txtFuncao.getText().trim().equals("")) {
 			exception.addError("funcao", "Field can't be empty");
+		} else {
+			exception.addError("funcao", "");
 		}
-		
+
 		obj.setFuncao(txtFuncao.getText());
-		
+
 		if (txtCargaHoraria.getText() == null || txtCargaHoraria.getText().trim().equals("")) {
 			exception.addError("cargaHoraria", "Field can't be empty");
+		} else {
+			exception.addError("cargaHoraria", "");
 		}
 
 		obj.setCargaHoraria(Utils.tryParseToInt(txtCargaHoraria.getText()));
-		
+
+		if (obj.getCargaHoraria() == null) {
+			exception.addError("cargaHoraria", "Campo numerico");
+		}
+
 		if (txtSalario.getText() == null || txtSalario.getText().trim().equals("")) {
 			exception.addError("salario", "Field can't be empty");
+
+		} else {
+			exception.addError("salario", "");
 		}
 
 		obj.setSalario(Utils.tryParseToDouble(txtSalario.getText()));
 
+		if (obj.getSalario() == null ) {
+			exception.addError("salario", "Campo numerico");
+		} 
+
 		if (exception.getErrors().size() > 0) {
 			throw exception;
 		}
-		
+
 		return obj;
 	}
 
@@ -171,25 +185,32 @@ public class FuncionariosFormController implements Initializable {
 		txtId.setText(String.valueOf(entity.getId()));
 		txtNome.setText(entity.getNome());
 		txtFuncao.setText(entity.getFuncao());
-		txtSalario.setText(String.valueOf(entity.getSalario()));
-		txtCargaHoraria.setText(String.valueOf(entity.getCargaHoraria()));
+
+		if (entity.getSalario() != null) {
+			txtSalario.setText(String.valueOf(entity.getSalario()));
+		}
+
+		if (entity.getCargaHoraria() != null) {
+			txtCargaHoraria.setText(String.valueOf(entity.getCargaHoraria()));
+		}
+
 	}
-	
+
 	private void setErrorMessages(Map<String, String> errors) {
 		Set<String> fields = errors.keySet();
 
 		if (fields.contains("nome")) {
 			labelErrorNome.setText(errors.get("nome"));
 		}
-		
+
 		if (fields.contains("funcao")) {
 			labelErrorFuncao.setText(errors.get("funcao"));
 		}
-		
+
 		if (fields.contains("salario")) {
 			labelErrorSalario.setText(errors.get("salario"));
 		}
-		
+
 		if (fields.contains("cargaHoraria")) {
 			labelErrorCargaHoraria.setText(errors.get("cargaHoraria"));
 		}

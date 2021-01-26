@@ -114,6 +114,7 @@ public class ProdutosDaoJDBC implements ProdutosDao {
 			throw new DbException(e.getMessage());
 		} 
 		finally {
+			
 			DB.closeStatement(st);
 		}
 	}

@@ -20,4 +20,11 @@ public class ValidationException extends RuntimeException {
 	public void addError(String fieldName, String errorMessage) {
 		errors.put(fieldName, errorMessage);
 	}
+	
+	public void clearError(String fieldName) {
+		if(errors.containsKey(fieldName)) {
+			errors.remove(fieldName);
+			addError(fieldName, "");
+		}
+	}
 }
