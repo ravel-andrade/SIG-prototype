@@ -47,10 +47,10 @@ public class InfraestruturaFormController implements Initializable {
 	private Label labelErrorNome;
 	
 	@FXML
-	private Label labelErrorCustoVarIndreto;
+	private Label labelErrorQuantidade;
 	
 	@FXML
-	private Label labelErrorCustoVarDireto;
+	private Label labelErrorValorUN;
 
 	@FXML
 	private Button btSave;
@@ -122,11 +122,19 @@ public class InfraestruturaFormController implements Initializable {
 
 		obj.setQuantidade(Utils.tryParseToInt(txtQuantidade.getText()));
 		
+		if (obj.getQuantidade() == null) {
+			exception.addError("quantidade", "Campo numerico");
+		}
+		
 		if (txtValorUN.getText() == null || txtValorUN.getText().trim().equals("")) {
 			exception.addError("valorUn", "Field can't be empty");
 		}
 
 		obj.setValorUN(Utils.tryParseToDouble(txtValorUN.getText()));
+		
+		if (obj.getValorUN() == null) {
+			exception.addError("valorUn", "Campo numerico");
+		}
 
 		if (exception.getErrors().size() > 0) {
 			throw exception;
@@ -160,8 +168,14 @@ public class InfraestruturaFormController implements Initializable {
 		txtId.setText(String.valueOf(entity.getId()));
 		txtDescricao.setText(entity.getDescricao());
 		
-		txtQuantidade.setText(String.valueOf(entity.getQuantidade()));
-		txtValorUN.setText(String.valueOf(entity.getValorUN()));
+		if (entity.getQuantidade() != null) {
+			txtQuantidade.setText(String.valueOf(entity.getQuantidade()));
+		}
+		
+		if (entity.getValorUN() != null) {
+			txtValorUN.setText(String.valueOf(entity.getValorUN()));
+		}
+		
 	}
 	
 	private void setErrorMessages(Map<String, String> errors) {
@@ -172,11 +186,11 @@ public class InfraestruturaFormController implements Initializable {
 		}
 		
 		if (fields.contains("quantidade")) {
-			labelErrorCustoVarDireto.setText(errors.get("quantidade"));
+			labelErrorQuantidade.setText(errors.get("quantidade"));
 		}
 		
 		if (fields.contains("valorUn")) {
-			labelErrorCustoVarDireto.setText(errors.get("valorUn"));
+			labelErrorValorUN.setText(errors.get("valorUn"));
 		}
 		
 	

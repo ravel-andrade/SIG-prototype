@@ -51,8 +51,8 @@
                </children>
             </HBox>
             <Label prefHeight="17.0" prefWidth="0.0" GridPane.columnIndex="2" GridPane.rowIndex="1" />
-            <Label fx:id="labelErrorCustoVarIndreto" GridPane.columnIndex="2" GridPane.rowIndex="3" />
-            <Label fx:id="labelErrorCargaHoraria" GridPane.columnIndex="2" GridPane.rowIndex="4" />
+            <Label fx:id="labelErrorValorUN" GridPane.columnIndex="2" GridPane.rowIndex="3" />
+            <Label fx:id="labelErrorQuantidade" GridPane.columnIndex="2" GridPane.rowIndex="2" />
          </children>
       </GridPane>
    </children>
